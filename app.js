@@ -1,5 +1,4 @@
 const password = document.getElementById("text-input");
-// const button = document.getElementById("btn");
 
 const length = 12;
 const charset =
