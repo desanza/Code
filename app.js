@@ -1,13 +1,30 @@
-let count = 0;
-let newText = document.getElementById("text");
-let newdel = document.getElementById("deleted");
+const password = document.getElementById("text-input");
+// const button = document.getElementById("btn");
 
-function increment() {
-  count += 1;
-  newText.textContent = count;
+const length = 12;
+const charset =
+  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=";
+
+function buttonClicked() {
+  let passwordOne = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    passwordOne += charset.charAt(randomIndex);
+  }
+  copyToClipboard();
+  password.value = passwordOne;
 }
 
-function minus() {
-  count -= 1;
-  newText.textContent = count;
+function copyToClipboard() {
+  password.select();
+  document.execCommand("copy");
+  navigator.clipboard
+    .writeText(password.value)
+    .then(() => {
+      // alert("Password copied to clipboard!");
+    })
+    .catch((err) => {
+      console.error("Unable to copy to clipboard", err);
+    });
 }
